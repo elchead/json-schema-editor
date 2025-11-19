@@ -1,8 +1,15 @@
-import { JSX as JSX_2 } from 'react/jsx-runtime';
+import { JSX } from 'react/jsx-runtime';
 import { z } from 'zod';
 
 declare const baseSchema: z.ZodObject<{
-    type: z.ZodOptional<z.ZodEnum<["string", "number", "integer", "boolean", "object", "array"]>>;
+    type: z.ZodOptional<z.ZodEnum<{
+        string: "string";
+        number: "number";
+        boolean: "boolean";
+        object: "object";
+        integer: "integer";
+        array: "array";
+    }>>;
     title: z.ZodOptional<z.ZodString>;
     description: z.ZodOptional<z.ZodString>;
     default: z.ZodOptional<z.ZodAny>;
@@ -18,68 +25,16 @@ declare const baseSchema: z.ZodObject<{
     minProperties: z.ZodOptional<z.ZodNumber>;
     maxProperties: z.ZodOptional<z.ZodNumber>;
     isModifiable: z.ZodOptional<z.ZodBoolean>;
-    "x-modifiable": z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    "x-modifiable": z.ZodOptional<z.ZodArray<z.ZodString>>;
     pattern: z.ZodOptional<z.ZodString>;
     format: z.ZodOptional<z.ZodString>;
     minItems: z.ZodOptional<z.ZodNumber>;
     maxItems: z.ZodOptional<z.ZodNumber>;
     uniqueItems: z.ZodOptional<z.ZodBoolean>;
-    enum: z.ZodOptional<z.ZodArray<z.ZodAny, "many">>;
+    enum: z.ZodOptional<z.ZodArray<z.ZodAny>>;
     $id: z.ZodOptional<z.ZodString>;
     $schema: z.ZodOptional<z.ZodString>;
-}, "strip", z.ZodTypeAny, {
-    type?: "string" | "number" | "boolean" | "object" | "integer" | "array" | undefined;
-    title?: string | undefined;
-    description?: string | undefined;
-    default?: any;
-    minimum?: number | undefined;
-    maximum?: number | undefined;
-    exclusiveMin?: number | undefined;
-    exclusiveMax?: number | undefined;
-    multipleOf?: number | undefined;
-    minLength?: number | undefined;
-    maxLength?: number | undefined;
-    minContains?: number | undefined;
-    maxContains?: number | undefined;
-    minProperties?: number | undefined;
-    maxProperties?: number | undefined;
-    isModifiable?: boolean | undefined;
-    "x-modifiable"?: string[] | undefined;
-    pattern?: string | undefined;
-    format?: string | undefined;
-    minItems?: number | undefined;
-    maxItems?: number | undefined;
-    uniqueItems?: boolean | undefined;
-    enum?: any[] | undefined;
-    $id?: string | undefined;
-    $schema?: string | undefined;
-}, {
-    type?: "string" | "number" | "boolean" | "object" | "integer" | "array" | undefined;
-    title?: string | undefined;
-    description?: string | undefined;
-    default?: any;
-    minimum?: number | undefined;
-    maximum?: number | undefined;
-    exclusiveMin?: number | undefined;
-    exclusiveMax?: number | undefined;
-    multipleOf?: number | undefined;
-    minLength?: number | undefined;
-    maxLength?: number | undefined;
-    minContains?: number | undefined;
-    maxContains?: number | undefined;
-    minProperties?: number | undefined;
-    maxProperties?: number | undefined;
-    isModifiable?: boolean | undefined;
-    "x-modifiable"?: string[] | undefined;
-    pattern?: string | undefined;
-    format?: string | undefined;
-    minItems?: number | undefined;
-    maxItems?: number | undefined;
-    uniqueItems?: boolean | undefined;
-    enum?: any[] | undefined;
-    $id?: string | undefined;
-    $schema?: string | undefined;
-}>;
+}, z.core.$strip>;
 
 declare type JSONSchema = z.infer<typeof baseSchema> & {
     properties?: {
@@ -90,7 +45,7 @@ declare type JSONSchema = z.infer<typeof baseSchema> & {
     additionalProperties?: boolean | JSONSchema;
 };
 
-export declare const JsonSchemaEditor: ({ rootType, readOnly, theme, styles, onChange, defaultValue, }: JsonSchemaEditorProps) => JSX_2.Element;
+export declare const JsonSchemaEditor: ({ rootType, readOnly, theme, styles, onChange, defaultValue, }: JsonSchemaEditorProps) => JSX.Element;
 
 declare interface JsonSchemaEditorProps {
     rootType: "object" | "array";
